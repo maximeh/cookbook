@@ -1,9 +1,5 @@
 # Pao de Qeijo
 
-<div style="text-align:center">
-<img align="center" src="images/pao_de_qeijo.jpg" width="320" height="320" />
-</div>
-
 ## Ingrédients
 
 ### Pâtes
