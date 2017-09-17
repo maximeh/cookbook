@@ -1,8 +1,8 @@
 # Cookies Otmeal Raisins
 
-## Ingréents
+## Ingrédients
 
-### Pâs
+### Pâtes
 
 * 275g de Farine
 * 300g de Cassonade
@@ -12,7 +12,7 @@
 * 1 filet de Lait
 * 1 sachet de Levure Chimique
 
-## Prération
+## Préparation
 
 1. Mélanger la cassonade et la margarine jusqu’à obtenir une consistance de
 pommade.
