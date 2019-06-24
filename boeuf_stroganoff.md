@@ -18,8 +18,7 @@
 5.  Dans la meme poele (moyen fort), rajouter de l'huile et faite chauffer
     poivrons et oignons pendant 4mn.
 6.  Ajouter les champignons pendant 2mn
-7.  Sur un feu moyen, ajouter 1 càs de farine, 1 pincée de sucre, 1 càc de
-    paprika.
+7.  Sur un feu moyen, ajouter 1 càs de farine, 1 càc de paprika.
 8.  Mélanger 1 càs de moutarde, 20cl de vin et 10cl d'eau, ajouter à la poele.
 9.  Ajouter 25cl de crème liquide épaisse et du persil, cuire jusqu'à
     ébullition.

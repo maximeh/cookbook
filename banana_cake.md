@@ -5,7 +5,7 @@
 * 140g de beurre
 * 140 sucre roux
 * 2 gros oeufs
-* 140g de farine
+* 140g de farine d'amande
 * 1 sachet de levure chimique
 * 2 bananes (bien mûres); en purée
 * 100g de sucre glace
