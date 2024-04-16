@@ -16,7 +16,7 @@
 2. Dans un autre bol, melanger la farine avec le sel et les noix.
 3. Faites un puit dans la farine, mettez y l'eau avec les levures.
 4. Incorporer doucement la farine et melanger jusqu'a obtenir une boule de pates
-5. Petrissez cette boule (6 a 8 minutes de petrissages manuel) 
+5. Petrissez cette boule (6 a 8 minutes de petrissages manuel)
 6. Formez une cle, tapotez et former une boule.
 7. Mettez cette boule dans un bol, mettez un peu de farine au dessus, un linge
 sec par dessus. Laissez pousser au moins 1h30 a temperature ambiante.

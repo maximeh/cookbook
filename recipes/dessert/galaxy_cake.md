@@ -27,8 +27,8 @@
 1. Mixer tous les ingrédients jusqu'à l'huile de coco (inclus). Mettre de cote
    1/4 de la préparation (blanc)
 2. Ajouter les framboises; mixer et mettre 1/4 de coté (rose)
-3. Ajouter les myrtilles (ajouter du colorant si vous avez que ce soit vraiment
-   bleu); mixer et mettre 1/4 de coté (bleu)
+3. Ajouter les myrtilles (ajouter du colorant si vous avez envie que ce soit
+   vraiment bleu); mixer et mettre 1/4 de coté (bleu)
 4. Ajouter les mures; mixer et mettre 1/4 de coté (violet)
 5. Mettre les ingrédients de la base ensemble, mixer
 6. Placer la base moulue dans un moule (ou autre selon présentation); tasser.

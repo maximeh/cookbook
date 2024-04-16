@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Cookbook</title>
+
+    <script src="libs/markdown-it.min.js"></script>
+    <link rel="stylesheet" href="libs/modern-normalize.min.css">
+    <link rel="stylesheet" href="libs/water.light.min.css">
+
+    <style>
+        .container {
+            display: none;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 16px 16px;
+        }
+        #wake-lock-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        @media print {
+            #back-link {
+                display: none;
+            }
+
+            #image-container {
+                display: none;
+            }
+        }
+
+        #back-link {
+            margin-right: 8px;
+        }
+
+        #back-icon {
+            height: 28px;
+            width: 28px;
+            margin-bottom: -2px;
+        }
+
+        #title-wrapper {
+            margin-top: 16px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: baseline;
+        }
+
+        #title {
+            margin: 0;
+        }
+
+        #description1 img {
+            border-radius: 8px;
+        }
+
+        #description2 {
+            display: none;
+        }
+
+        #description2 img {
+            border-radius: 8px;
+            max-width: calc(100% - 350px);
+        }
+
+        #ingredients-container {
+            background-color: #eee;
+            padding: 8px 24px 16px;
+            margin-top: 16px;
+            border-radius: 8px;
+        }
+
+        #ingredients-container h2::before {
+            content: "📋 ";
+        }
+
+        #instructions-container h2::before {
+            content: "🔪 ";
+        }
+
+        #image-container h2::before {
+            content: "📷 ";
+        }
+
+        #image-container p img {
+            border-radius: 8px;
+        }
+
+        @media print, screen and (min-width: 600px) {
+            #ingredients-container {
+                width: 320px;
+                background-color: #eee;
+                float: right;
+                padding: 0px 24px 16px;
+                margin: 4px 0 16px 16px;
+                border-radius: 8px;
+            }
+
+            #description1 {
+                display: none;
+            }
+
+            #description2 {
+                display: block;
+            }
+
+            #image-container p {
+                display: grid;
+                grid-template-columns: 50% 50%;
+                gap: 12px;
+            }
+        }
+    </style>
+
+    <script>
+        const md = window.markdownit();
+        let wakeLock = null;
+        const baseURL = "https://raw.githubusercontent.com/maximeh/cookbook/main"
+
+        async function loadRecipe() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const recipeFile = urlParams.get('recipe');
+
+            if (!recipeFile) {
+                return;
+            }
+
+            const result = await fetch(`${baseURL}/recipes/${recipeFile}.md`);
+            return result.text();
+        }
+
+        async function loadRecipeList() {
+            const result = await fetch(`${baseURL}/recipes.md`);
+            return result.text();
+        }
+
+        async function parseMarkdown(markdown) {
+            const regexHeader = /(^|\n)(# (.+))([^#]+?)(## )/gm;
+            const headerExec = regexHeader.exec(markdown)
+            const title = headerExec[3];
+            const description = headerExec[4];
+
+            const regexSubheading = /\n(## (.|\n)+?(?=\n## |$))/g;
+            const ingredients = regexSubheading.exec(markdown)[1];
+            const instructions = regexSubheading.exec(markdown)[1];
+            const images = regexSubheading.exec(markdown)?.[1];
+
+            return [title, description, ingredients, instructions, images];
+        }
+
+        async function toggleWakeLock(btn) {
+            if (!wakeLock) {
+                try {
+                    wakeLock = await navigator.wakeLock.request('screen');
+                    btn.textContent = '😴';
+                } catch (err) {
+                    console.error(`${err.name}: ${err.message}`);
+                }
+            } else {
+                await wakeLock.release();
+                wakeLock = null;
+                btn.textContent = '🍲';
+            }
+        }
+
+        async function init() {
+            const recipe = await loadRecipe();
+
+            if (!recipe) {
+                const recipeList = await loadRecipeList();
+                 document.getElementById("recipe-list").innerHTML
+                    = md.render(recipeList);
+                document.getElementById("recipe-list").style.display = "block";
+                return;
+            }
+
+            const [title, description, ingredients, instructions, images] = await parseMarkdown(recipe);
+
+            document.title = title;
+
+            document.getElementById("title").innerHTML = title;
+            document.getElementById("description1").innerHTML
+                = md.render(description);
+            document.getElementById("description2").innerHTML
+                = md.render(description);
+            document.getElementById("ingredients-container").innerHTML
+                = md.render(ingredients);
+            document.getElementById("instructions-container").innerHTML
+                = md.render(instructions);
+            if (images !== undefined) {
+                document.getElementById("image-container").innerHTML
+                = md.render(images);
+            }
+
+            document.getElementById("recipe-container").style.display = "block";
+        }
+
+        init().catch(error => console.log(error));
+    </script>
+</head>
+
+<body>
+    <div id="wake-lock-btn" onclick="toggleWakeLock(this)">🍲</div>
+    <div id="recipe-container" class="container">
+        <div id="title-wrapper">
+            <a id="back-link" href="/cookbook/">
+                <svg xmlns="http://www.w3.org/2000/svg" id="back-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+            </a>
+            <h1 id="title"></h1>
+        </div>
+        <div id="description1"></div>
+        <div id="ingredients-container"></div>
+        <div id="description2"></div>
+        <div id="instructions-container"></div>
+        <div id="image-container"></div>
+    </div>
+    <div id="recipe-list" class="container"></div>
+</body>
+
+</html>

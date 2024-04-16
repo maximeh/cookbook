@@ -1,4 +1,4 @@
-# Hommus
+# Hummus
 
 ## Ingrédients
 
