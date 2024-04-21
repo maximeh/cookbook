@@ -10,3 +10,8 @@
 ## Préparation
 
 1. Simply mix everything until you reach the desired consistency
+
+## Images
+
+![](/images/mango_lassi.jpeg)
+

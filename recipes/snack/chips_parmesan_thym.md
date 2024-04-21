@@ -18,3 +18,7 @@
 6. Faire cuire pendant 8-10 minutes
 7. Laisser refroidir
 8. Ajouter un peu de thym par dessus pour la décoration
+
+## Images
+
+![](/images/chips_parmesan_thym.jpeg)

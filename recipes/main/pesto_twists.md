@@ -16,3 +16,7 @@
 7. Cut into twelve 1-in.-wide strips.
 8. Twist each strip.
 9. Place them on a baking tray and bake for 12-15 minutes or until golden brown (feel free to egg wash)
+
+## Images
+
+![](/images/pesto_twists.jpeg)

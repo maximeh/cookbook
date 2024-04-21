@@ -121,7 +121,8 @@
     <script>
         const md = window.markdownit();
         let wakeLock = null;
-        const baseURL = "https://raw.githubusercontent.com/maximeh/cookbook/main"
+        const baseURL = "https://raw.githubusercontent.com/maximeh/cookbook/main";
+        const baseURLImage = `${baseURL}/images`;
 
         async function loadRecipe() {
             const urlParams = new URLSearchParams(window.location.search);
@@ -185,17 +186,13 @@
             document.title = title;
 
             document.getElementById("title").innerHTML = title;
-            document.getElementById("description1").innerHTML
-                = md.render(description);
-            document.getElementById("description2").innerHTML
-                = md.render(description);
-            document.getElementById("ingredients-container").innerHTML
-                = md.render(ingredients);
-            document.getElementById("instructions-container").innerHTML
-                = md.render(instructions);
+            document.getElementById("description1").innerHTML = md.render(description);
+            document.getElementById("description2").innerHTML = md.render(description);
+            document.getElementById("ingredients-container").innerHTML = md.render(ingredients);
+            document.getElementById("instructions-container").innerHTML = md.render(instructions);
             if (images !== undefined) {
-                document.getElementById("image-container").innerHTML
-                = md.render(images);
+                const updatedImages = images.replace(/!\[\](\(\/images\/([^)]+)\))/g, `![](${baseURLImage}/$2)`);
+                document.getElementById("image-container").innerHTML = md.render(updatedImages);
             }
 
             document.getElementById("recipe-container").style.display = "block";

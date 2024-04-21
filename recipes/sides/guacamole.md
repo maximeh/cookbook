@@ -16,3 +16,7 @@
 3. Ajouter tomates et oignons.
 4. Ajouter le jus du citron.
 6. Salé, poivré, melangez, goutez !
+
+## Images
+
+![](/images/guacamole.jpeg)
