@@ -36,3 +36,7 @@
 7. Attendre 20mn
 8. Démouler
 9. Faire le 2eme glacage et verser. Servir quand le glacage est figé.
+
+## Images
+
+![](/images/cake_citron_pavot.jpeg)
