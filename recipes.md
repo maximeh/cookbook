@@ -1,5 +1,8 @@
 # Recipes
 
+## 📜 Other
+
+
 ## 🍹 Drinks
 
 - [Mango Lassi](/cookbook/?recipe=drinks/mango_lassi)
@@ -51,8 +54,8 @@
 - [Pesto Twists](/cookbook/?recipe=main/pesto_twists)
 - [Pasta Pear And Walnuts](/cookbook/?recipe=main/pasta_pear_and_walnuts)
 - [Fondue](/cookbook/?recipe=main/fondue)
-- [Tarte Oignons Noix Chevres](/cookbook/?recipe=main/tarte_oignons_noix_chevres)
 - [Pate Fraiche](/cookbook/?recipe=main/pate_fraiche)
+- [Goat Cheese Walnut Puff Pastry](/cookbook/?recipe=main/goat_cheese_walnut_puff_pastry)
 - [Caccio E Pepe](/cookbook/?recipe=main/caccio_e_pepe)
 - [Greek Toast](/cookbook/?recipe=main/greek_toast)
 

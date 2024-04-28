@@ -9,3 +9,7 @@
 
 ## Directions
 Cook the pasta and mix everything after.
+
+## Images
+
+![](/images/pasta_pear_and_walnuts.jpeg)
