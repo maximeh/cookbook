@@ -43,6 +43,7 @@
 - [Cake Citron Pavot](/cookbook/?recipe=dessert/cake_citron_pavot)
 - [Galette Des Rois](/cookbook/?recipe=dessert/galette_des_rois)
 - [Pain Aux Noix](/cookbook/?recipe=dessert/pain_aux_noix)
+- [Walnut Shortbread](/cookbook/?recipe=dessert/walnut_shortbread)
 - [Galaxy Cake](/cookbook/?recipe=dessert/galaxy_cake)
 - [Gateau Magique Carotte](/cookbook/?recipe=dessert/gateau_magique_carotte)
 
