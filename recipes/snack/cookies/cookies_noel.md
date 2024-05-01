@@ -1,4 +1,4 @@
-# Cookie Noel
+# Cookies Noel
 
 ## Ingrédients
 

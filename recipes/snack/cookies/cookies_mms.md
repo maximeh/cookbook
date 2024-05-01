@@ -1,4 +1,4 @@
-# Cookie aux M&M's
+# Cookies aux M&M's
 
 ## Ingrédients
 
