@@ -29,6 +29,7 @@
 ## 🍝 Main Dishes
 
 - [Caccio E Pepe](/cookbook/?recipe=main/caccio_e_pepe)
+- [Eggs On Toast](/cookbook/?recipe=main/eggs_on_toast)
 - [Fondue](/cookbook/?recipe=main/fondue)
 - [Goat Cheese Walnut Puff Pastry](/cookbook/?recipe=main/goat_cheese_walnut_puff_pastry)
 - [Greek Toast](/cookbook/?recipe=main/greek_toast)
