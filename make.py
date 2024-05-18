@@ -28,7 +28,7 @@ def generate_recipes_md():
             category_name = category.relative_to(ROOT_DIR)
             category_title = get_category_name(str(category_name))
             f.write(f"## {category_title}\n\n")
-            for recipe in sorted(category.rglob("*.md")):
+            for recipe in sorted(category.glob("*.md")):
                 recipe_name = recipe.stem.replace("_", " ").title()
                 recipe_path = category_name / recipe.stem
                 f.write(f"- [{recipe_name}](/cookbook/?recipe={recipe_path})\n")
