@@ -23,6 +23,7 @@
 
 ## 🍹 Drinks
 
+- [Electrolytes](/cookbook/?recipe=drinks/electrolytes)
 - [Mango Lassi](/cookbook/?recipe=drinks/mango_lassi)
 - [Vin Chaud](/cookbook/?recipe=drinks/vin_chaud)
 
