@@ -2,20 +2,19 @@
 
 ## Ingredients
 
-This is a copy from LMNT:
+This was a copy from LMNT:
 https://science.drinklmnt.com/electrolytes/best-homemade-electrolyte-drink-for-dehydration/
 
+Customized for me due after measuring how I sweat (ask ChatGPT)
+
 * 18oz water (size of my bottle)
-* 2500 mg sodium chloride (for 1000 mg sodium)
-* 385 mg potassium chloride (for 200 mg potassium)
-* 390 mg magnesium malate OR 265 mg di-magnesium malate (for 60 mg magnesium)
+* 800 mg sodium
+* 200 mg potassium
 
 ## Explanation
 
-1. The sodium is table salt; simply measure it.
-2. The potassium comes from salt substitute, I use Morton salt found at Safeway
-3. I don't add magnesium because I already take 2x SlowMag daily
-4. Add lime (real one) juice if you want flavors
-4. Drink it slowly; don't chug it. You'll have an upset stomach otherwise.
+1. One dash (1/8) of table salt
+2. One pinch (1/16) of potassium
+3. Drink it slowly; don't chug it. You'll have an upset stomach otherwise.
 
 
