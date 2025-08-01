@@ -16,6 +16,7 @@
 - [Galaxy Cake](/cookbook/?recipe=dessert/galaxy_cake)
 - [Galette Des Rois](/cookbook/?recipe=dessert/galette_des_rois)
 - [Gateau Magique Carotte](/cookbook/?recipe=dessert/gateau_magique_carotte)
+- [Hershey Cookies](/cookbook/?recipe=dessert/hershey_cookies)
 - [Pain Aux Noix](/cookbook/?recipe=dessert/pain_aux_noix)
 - [Tartelettes Paleo](/cookbook/?recipe=dessert/tartelettes_paleo)
 - [Vatrouchka](/cookbook/?recipe=dessert/vatrouchka)
