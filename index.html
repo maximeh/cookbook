@@ -19,37 +19,197 @@
             padding: 0 16px 16px;
         }
         #wake-lock-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            min-width: 44px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 24px;
             cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease;
+            z-index: 1000;
         }
+
+        #wake-lock-btn:hover {
+            background-color: rgba(255, 255, 255, 1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-1px);
+        }
+
+        #wake-lock-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #loading-container {
+            display: none;
+            max-width: 800px;
+            margin: 4rem auto;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        #loading-container.show {
+            display: block;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #333;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        #error-container {
+            display: none;
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 2rem;
+            background-color: #fee;
+            border-radius: 8px;
+            border-left: 4px solid #c33;
+        }
+
+        #error-container.show {
+            display: block;
+        }
+
+        #error-container h2 {
+            margin-top: 0;
+            color: #c33;
+        }
+
+        /* Typography improvements for better readability while cooking */
+        #recipe-container h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        #recipe-container h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        #recipe-container p,
+        #recipe-container li {
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        #recipe-container ol,
+        #recipe-container ul {
+            margin-top: 0.5rem;
+        }
+
+        #recipe-container li {
+            margin-bottom: 0.75rem;
+        }
+
+        #recipe-container ol li {
+            padding-left: 0.5rem;
+        }
+
+        #ingredients-container ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        #ingredients-container li:before {
+            content: "▢ ";
+            color: #666;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* Link hover states for better interactivity */
+        a {
+            transition: opacity 0.2s ease, color 0.2s ease;
+        }
+
+        a:hover {
+            opacity: 0.8;
+        }
+
+        a:active {
+            opacity: 0.6;
+        }
+
+        #recipe-list a {
+            display: block;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            text-decoration: none;
+        }
+
+        #recipe-list a:hover {
+            background-color: #f9f9f9;
+            padding-left: 0.5rem;
+            border-left: 3px solid #333;
+            opacity: 1;
+        }
+
+        #recipe-list h2 {
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
         @media print {
+            #loading-container,
+            #error-container,
+            #wake-lock-btn {
+                display: none !important;
+            }
             #back-link {
                 display: none;
             }
 
-            #image-container {
-                display: none;
+            /* Show images in print, but optimize layout */
+            #image-container img {
+                max-width: 100%;
+                page-break-inside: avoid;
+            }
+
+            /* Ensure ingredients stay together on print */
+            #ingredients-container {
+                page-break-inside: avoid;
             }
         }
 
         #back-link {
-            margin-right: 8px;
+            display: inline-block;
+            text-decoration: none;
+            color: inherit;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            transition: opacity 0.2s ease;
         }
 
-        #back-icon {
-            height: 28px;
-            width: 28px;
-            margin-bottom: -2px;
+        #back-link:hover {
+            opacity: 0.7;
         }
 
         #title-wrapper {
-            margin-top: 16px;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: baseline;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
         }
 
         #title {
@@ -94,7 +254,7 @@
 
         @media print, screen and (min-width: 600px) {
             #ingredients-container {
-                width: 320px;
+                width: min(320px, 40%);
                 background-color: #eee;
                 float: right;
                 padding: 0px 24px 16px;
@@ -112,7 +272,7 @@
 
             #image-container p {
                 display: grid;
-                grid-template-columns: 50% 50%;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
                 gap: 12px;
             }
         }
@@ -121,7 +281,26 @@
     <script>
         const md = window.markdownit();
         let wakeLock = null;
-        const baseURL = "https://raw.githubusercontent.com/maximeh/cookbook/main";
+
+        // Detect the app's base path from the current location
+        // Works for: /, /cookbook/, /any/path/
+        const pathParts = window.location.pathname.split('/').filter(p => p);
+        const lastPart = pathParts[pathParts.length - 1];
+
+        // If last part is a file (like index.html), remove it
+        if (lastPart && lastPart.includes('.')) {
+            pathParts.pop();
+        }
+
+        const appBasePath = pathParts.length > 0 ? '/' + pathParts.join('/') : '';
+        const isLocalDev = window.location.hostname === 'localhost' ||
+                          window.location.hostname === '127.0.0.1' ||
+                          window.location.protocol === 'file:';
+
+        // For local dev, use current directory; for production, use GitHub
+        const baseURL = isLocalDev
+            ? appBasePath
+            : "https://raw.githubusercontent.com/maximeh/cookbook/main";
         const baseURLImage = `${baseURL}/images`;
 
         async function loadRecipe() {
@@ -129,30 +308,76 @@
             const recipeFile = urlParams.get('recipe');
 
             if (!recipeFile) {
-                return;
+                return null;
             }
 
-            const result = await fetch(`${baseURL}/recipes/${recipeFile}.md`);
-            return result.text();
+            const response = await fetch(`${baseURL}/recipes/${recipeFile}.md`);
+            if (!response.ok) {
+                throw new Error(`Failed to load recipe: ${response.statusText}`);
+            }
+            return response.text();
         }
 
         async function loadRecipeList() {
-            const result = await fetch(`${baseURL}/recipes.md`);
-            return result.text();
+            const response = await fetch(`${baseURL}/recipes.md`);
+            if (!response.ok) {
+                throw new Error(`Failed to load recipe list: ${response.statusText}`);
+            }
+            return response.text();
         }
 
         async function parseMarkdown(markdown) {
-            const regexHeader = /(^|\n)(# (.+))([^#]+?)(## )/gm;
-            const headerExec = regexHeader.exec(markdown)
-            const title = headerExec[3];
-            const description = headerExec[4];
+            const lines = markdown.split('\n');
+            let title = '';
+            let description = '';
+            const sections = {};
 
-            const regexSubheading = /\n(## (.|\n)+?(?=\n## |$))/g;
-            const ingredients = regexSubheading.exec(markdown)[1];
-            const instructions = regexSubheading.exec(markdown)[1];
-            const images = regexSubheading.exec(markdown)?.[1];
+            let currentSection = null;
+            let captureDescription = false;
 
-            return [title, description, ingredients, instructions, images];
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i];
+
+                // Match title (# Heading)
+                if (line.match(/^# /)) {
+                    title = line.replace(/^# /, '').trim();
+                    captureDescription = true;
+                    continue;
+                }
+
+                // Match section headers (## Section)
+                const sectionMatch = line.match(/^## (.+)/);
+                if (sectionMatch) {
+                    captureDescription = false;
+                    currentSection = sectionMatch[1].trim();
+                    sections[currentSection] = '';
+                    continue;
+                }
+
+                // Capture description (content between # and first ##)
+                if (captureDescription && line.trim()) {
+                    description += line + '\n';
+                } else if (currentSection) {
+                    // Capture section content
+                    sections[currentSection] += line + '\n';
+                }
+            }
+
+            // Map section names to expected content (case-insensitive, multi-language support)
+            const ingredients = sections['Ingredients'] || sections['ingredients'] ||
+                              sections['Ingrédients'] || sections['ingrédients'] || '';
+            const instructions = sections['Directions'] || sections['directions'] ||
+                               sections['Instructions'] || sections['instructions'] ||
+                               sections['Preparation'] || sections['preparation'] ||
+                               sections['Préparation'] || sections['préparation'] ||
+                               sections['Explanation'] || sections['explanation'] || '';
+            const images = sections['Images'] || sections['images'] || sections['Photos'] ||
+                          sections['photos'] || null;
+
+            return [title, description.trim(),
+                   ingredients ? `## Ingredients\n${ingredients}` : '',
+                   instructions ? `## Directions\n${instructions}` : '',
+                   images ? `## Images\n${images}` : null];
         }
 
         async function toggleWakeLock(btn) {
@@ -160,6 +385,7 @@
                 try {
                     wakeLock = await navigator.wakeLock.request('screen');
                     btn.textContent = '😴';
+                    btn.title = 'Screen will stay awake (click to release)';
                 } catch (err) {
                     console.error(`${err.name}: ${err.message}`);
                 }
@@ -167,50 +393,96 @@
                 await wakeLock.release();
                 wakeLock = null;
                 btn.textContent = '🍲';
+                btn.title = 'Keep screen awake while cooking';
             }
         }
 
         async function init() {
-            const recipe = await loadRecipe();
+            const loadingContainer = document.getElementById("loading-container");
+            const errorContainer = document.getElementById("error-container");
+            const recipeContainer = document.getElementById("recipe-container");
+            const recipeList = document.getElementById("recipe-list");
 
-            if (!recipe) {
-                const recipeList = await loadRecipeList();
-                 document.getElementById("recipe-list").innerHTML
-                    = md.render(recipeList);
-                document.getElementById("recipe-list").style.display = "block";
-                return;
+            try {
+                // Show loading state
+                loadingContainer.classList.add('show');
+
+                const recipe = await loadRecipe();
+
+                if (!recipe) {
+                    // Load recipe list instead
+                    const recipeListContent = await loadRecipeList();
+                    // Update recipe list links to use correct base path
+                    const updatedRecipeList = recipeListContent.replace(
+                        /\(\/cookbook\/\?recipe=/g,
+                        `(${appBasePath}/?recipe=`
+                    );
+                    recipeList.innerHTML = md.render(updatedRecipeList);
+                    loadingContainer.classList.remove('show');
+                    recipeList.style.display = "block";
+                    return;
+                }
+
+                // Parse and display recipe
+                const [title, description, ingredients, instructions, images] = await parseMarkdown(recipe);
+
+                document.title = title;
+
+                // Update back link to use correct base path
+                document.getElementById("back-link").href = `${appBasePath}/`;
+                document.getElementById("error-back-link").href = `${appBasePath}/`;
+
+                document.getElementById("title").innerHTML = title;
+                document.getElementById("description1").innerHTML = md.render(description);
+                document.getElementById("description2").innerHTML = md.render(description);
+                document.getElementById("ingredients-container").innerHTML = md.render(ingredients);
+                document.getElementById("instructions-container").innerHTML = md.render(instructions);
+                if (images !== undefined && images !== null) {
+                    const updatedImages = images.replace(/!\[\](\(\/images\/([^)]+)\))/g, `![](${baseURLImage}/$2)`);
+                    document.getElementById("image-container").innerHTML = md.render(updatedImages);
+                }
+
+                // Hide loading, show recipe
+                loadingContainer.classList.remove('show');
+                recipeContainer.style.display = "block";
+            } catch (error) {
+                console.error('Error loading recipe:', error);
+                // Update back link even on error
+                document.getElementById("error-back-link").href = `${appBasePath}/`;
+                // Hide loading, show error
+                loadingContainer.classList.remove('show');
+                errorContainer.classList.add('show');
+                document.getElementById("error-message").textContent =
+                    error.message || "Something went wrong loading the recipe.";
             }
-
-            const [title, description, ingredients, instructions, images] = await parseMarkdown(recipe);
-
-            document.title = title;
-
-            document.getElementById("title").innerHTML = title;
-            document.getElementById("description1").innerHTML = md.render(description);
-            document.getElementById("description2").innerHTML = md.render(description);
-            document.getElementById("ingredients-container").innerHTML = md.render(ingredients);
-            document.getElementById("instructions-container").innerHTML = md.render(instructions);
-            if (images !== undefined) {
-                const updatedImages = images.replace(/!\[\](\(\/images\/([^)]+)\))/g, `![](${baseURLImage}/$2)`);
-                document.getElementById("image-container").innerHTML = md.render(updatedImages);
-            }
-
-            document.getElementById("recipe-container").style.display = "block";
         }
 
-        init().catch(error => console.log(error));
+        // Wait for DOM to be ready before initializing
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
     </script>
 </head>
 
 <body>
-    <div id="wake-lock-btn" onclick="toggleWakeLock(this)">🍲</div>
+    <div id="wake-lock-btn" onclick="toggleWakeLock(this)" title="Keep screen awake while cooking">🍲</div>
+
+    <div id="loading-container">
+        <div class="spinner"></div>
+        <p>Loading recipe...</p>
+    </div>
+
+    <div id="error-container">
+        <h2>Oops!</h2>
+        <p id="error-message">Something went wrong loading the recipe.</p>
+        <p><a id="error-back-link" href="/">← Back to recipes</a></p>
+    </div>
+
     <div id="recipe-container" class="container">
+        <a id="back-link" href="/">← Recipes</a>
         <div id="title-wrapper">
-            <a id="back-link" href="/cookbook/">
-                <svg xmlns="http://www.w3.org/2000/svg" id="back-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                </svg>
-            </a>
             <h1 id="title"></h1>
         </div>
         <div id="description1"></div>
