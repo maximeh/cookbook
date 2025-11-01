@@ -276,6 +276,146 @@
                 gap: 12px;
             }
         }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #202b38;
+                color: #dbdbdb;
+            }
+
+            body,
+            button,
+            input,
+            select,
+            textarea {
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
+            }
+
+            h1, h2, h3, h4, h5, h6 {
+                color: #dbdbdb;
+            }
+
+            p, li, span, div {
+                color: #dbdbdb;
+            }
+
+            a {
+                color: #41adff;
+                text-decoration: none;
+            }
+
+            a:hover {
+                color: #6cc0ff;
+            }
+
+            code,
+            kbd,
+            samp,
+            pre {
+                background: #161f27;
+                color: #ffbe85;
+            }
+
+            pre {
+                border-left: 2px solid #41adff;
+            }
+
+            blockquote {
+                border-left: 2px solid #526980;
+                color: #a0a0a0;
+            }
+
+            button,
+            input[type="submit"],
+            input[type="button"],
+            input[type="checkbox"] {
+                background-color: #161f27;
+                border: 1px solid #526980;
+                color: #dbdbdb;
+            }
+
+            button:hover,
+            input[type="submit"]:hover,
+            input[type="button"]:hover,
+            input[type="checkbox"]:hover {
+                background: #324759;
+            }
+
+            input,
+            select,
+            textarea {
+                background-color: #161f27;
+                border: 1px solid #526980;
+                color: #dbdbdb;
+            }
+
+            input:focus,
+            select:focus,
+            textarea:focus {
+                border: 1px solid #41adff;
+            }
+
+            table {
+                border: 1px solid #526980;
+            }
+
+            td,
+            th {
+                border: 1px solid #526980;
+                padding: 0.5rem 1rem;
+            }
+
+            hr {
+                border: 1px solid #526980;
+            }
+
+            mark {
+                background-color: #ffbe85;
+                color: #202b38;
+            }
+
+            #wake-lock-btn {
+                background-color: rgba(22, 31, 39, 0.9);
+                color: #dbdbdb;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            }
+
+            #wake-lock-btn:hover {
+                background-color: rgba(50, 71, 89, 1);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+            }
+
+            .spinner {
+                border: 3px solid #526980;
+                border-top: 3px solid #dbdbdb;
+            }
+
+            #error-container {
+                background-color: #2d1a1a;
+                border-left: 4px solid #ff6b6b;
+            }
+
+            #error-container h2 {
+                color: #ff8888;
+            }
+
+            #ingredients-container li:before {
+                color: #a0a0a0;
+            }
+
+            #recipe-list a {
+                border-bottom: 1px solid #526980;
+            }
+
+            #recipe-list a:hover {
+                background-color: #161f27;
+                border-left: 3px solid #41adff;
+            }
+
+            #ingredients-container {
+                background-color: #161f27;
+            }
+        }
     </style>
 
     <script>
